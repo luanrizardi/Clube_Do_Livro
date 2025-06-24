@@ -1,0 +1,26 @@
+<p style="color: green"><%= notice %></p>
+
+<%= render @club %>
+
+<div>
+  <%= link_to "Edit this club", edit_club_path(@club) %> |
+  <%= link_to "Back to clubs", clubs_path %>
+
+  <h2>Livros deste clube</h2>
+
+  <% if @club.books.any? %>
+    <ul>
+      <% @club.books.each do |book| %>
+        <li>
+          <strong><%= link_to book.title, book_path(book) %></strong><br>
+          <em><%= truncate(book.description, length: 100) %></em>
+        </li>
+      <% end %>
+    </ul>
+  <% else %>
+    <p>Este clube ainda não possui livros cadastrados.</p>
+  <% end %>
+
+
+  <%= button_to "Destroy this club", @club, method: :delete %>
+</div>

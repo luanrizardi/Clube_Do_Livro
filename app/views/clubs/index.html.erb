@@ -1,0 +1,17 @@
+<h1>Clubes</h1>
+
+<%= link_to "Novo clube", new_club_path, class: "btn btn-primary" %>
+
+<% @clubs.each do |club| %>
+  <div class="club-card">
+    <strong>Nome:</strong> <%= club.name %><br>
+    <strong>Descrição:</strong> <%= club.description %><br>
+    <strong>Responsável:</strong> <%= club.user.name rescue "N/A" %><br>
+    
+    <%= link_to "Ver", club_path(club) %> |
+    <% if admin? %>
+      <%= link_to "Editar", edit_club_path(club) %> |
+      <%= link_to "Excluir", club_path(club), method: :delete, data: { confirm: "Tem certeza?" } %>
+    <% end %>
+  </div>
+<% end %>

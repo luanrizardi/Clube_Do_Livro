@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>ClubesLeitura</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag "application" %>
+  </head>
+
+  <body>
+    <%= yield %>
+    <nav>
+      <% if current_user %>
+        Olá, <%= current_user.name %>!
+        <%= link_to "Clubes", clubs_path %>
+        <%= link_to "Livros", books_path %>
+        <%= link_to "Autores", authors_path %>
+        <%= link_to "Sair", logout_path, method: :delete %>
+      <% else %>
+        <%= link_to "Login", login_path %>
+      <% end %>
+    </nav>
+
+  </body>
+</html>
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+    const toggleBtn = document.getElementById("toggle-authors");
+    const authorsDiv = document.getElementById("authors-list");
+
+    toggleBtn.addEventListener("click", function() {
+      if (authorsDiv.style.display === "none") {
+        authorsDiv.style.display = "block";
+      } else {
+        authorsDiv.style.display = "none";
+      }
+    });
+  });
+</script>

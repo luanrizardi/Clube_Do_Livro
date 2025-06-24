@@ -1,0 +1,31 @@
+<p style="color: green"><%= notice %></p>
+
+<%= render @book %>
+
+<div>
+  <%= link_to "Edit this book", edit_book_path(@book) %> |
+  <%= link_to "Back to books", books_path %>
+
+  <p>
+    <h2>Autores</h2>
+    <button id="toggle-authors">Mostrar/Ocultar autores</button>
+
+    <div id="authors-list">
+      <% if @book.authors.any? %>
+        <ul>
+          <% @book.authors.each do |author| %>
+            <li><strong><%= author.name %></strong><br>
+              <em><%= author.bio %></em>
+            </li>
+          <% end %>
+        </ul>
+      <% else %>
+        <p><em>Sem autores associados.</em></p>
+      <% end %>
+  </p>
+
+  <%= link_to 'Editar', edit_book_path(@book) %> |
+  <%= link_to 'Voltar', books_path %>
+
+  <%= button_to "Destroy this book", @book, method: :delete %>
+</div>

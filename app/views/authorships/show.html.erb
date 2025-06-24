@@ -1,0 +1,10 @@
+<p style="color: green"><%= notice %></p>
+
+<%= render @authorship %>
+
+<div>
+  <%= link_to "Edit this authorship", edit_authorship_path(@authorship) %> |
+  <%= link_to "Back to authorships", authorships_path %>
+
+  <%= button_to "Destroy this authorship", @authorship, method: :delete %>
+</div>

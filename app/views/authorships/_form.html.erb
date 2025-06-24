@@ -1,0 +1,27 @@
+<%= form_with(model: authorship) do |form| %>
+  <% if authorship.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(authorship.errors.count, "error") %> prohibited this authorship from being saved:</h2>
+
+      <ul>
+        <% authorship.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= form.label :author_id, style: "display: block" %>
+    <%= form.text_field :author_id %>
+  </div>
+
+  <div>
+    <%= form.label :book_id, style: "display: block" %>
+    <%= form.text_field :book_id %>
+  </div>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>

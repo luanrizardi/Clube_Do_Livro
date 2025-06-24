@@ -1,0 +1,49 @@
+<%= form_with(model: club) do |form| %>
+  <% if club.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(club.errors.count, "error") %> prohibited this club from being saved:</h2>
+
+      <ul>
+        <% club.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= form.label :name, style: "display: block" %>
+    <%= form.text_field :name %>
+  </div>
+
+  <div>
+    <%= form.label :description, style: "display: block" %>
+    <%= form.text_area :description %>
+  </div>
+
+  <div>
+    <%= form.label :user_id, style: "display: block" %>
+    <%= form.text_field :user_id %>
+  </div>
+
+  <h2>Livros deste clube</h2>
+
+  <% if @club.books.any? %>
+    <ul>
+      <% @club.books.each do |book| %>
+        <li>
+          <strong><%= link_to book.title, book_path(book) %></strong><br>
+          <em><%= truncate(book.description, length: 100) %></em>
+        </li>
+      <% end %>
+    </ul>
+  <% else %>
+    <p>Este clube ainda não possui livros cadastrados.</p>
+  <% end %>
+
+  <%= link_to "Adicionar novo livro", new_book_path(club_id: @club.id), class: "btn btn-primary" %>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>

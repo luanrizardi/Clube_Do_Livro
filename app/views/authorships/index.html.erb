@@ -1,0 +1,14 @@
+<p style="color: green"><%= notice %></p>
+
+<h1>Authorships</h1>
+
+<div id="authorships">
+  <% @authorships.each do |authorship| %>
+    <%= render authorship %>
+    <p>
+      <%= link_to "Show this authorship", authorship %>
+    </p>
+  <% end %>
+</div>
+
+<%= link_to "New authorship", new_authorship_path %>
